@@ -1,0 +1,292 @@
+/* Горизонтальный макет */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 300px;
+    background: #2c3e50;
+    color: white;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background: white;
+}
+
+/* Форма */
+#task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input, textarea, select, button {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    background: #3498db;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+/* Список задач */
+#task-list {
+    display: grid;
+    gap: 20px;
+    padding: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(0, 1fr));
+    align-items: stretch;
+}
+  
+
+.task-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-start; 
+}
+
+.task-item {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    height: 100%;
+    /* animation: taskFadeIn 0.3s ease-out; */
+}
+
+.task-bottom {
+    margin-top: auto; /* Прижимаем к низу карточки */
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Фильтры */
+.filter-bar {
+    margin-bottom: 20px;
+}
+
+/* Стили для панели фильтров и сортировки */
+.filter-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.sort-buttons h1 {
+    margin: 4;
+    font-size: 16px; 
+    font-weight: normal; 
+    color: #000000; 
+    white-space: nowrap; 
+}
+
+.sort-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.sort-buttons button {
+    background: #3498db;
+    color: white;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.sort-buttons button:hover {
+    background: #2980b9;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+    }
+}
+  
+  /* Грид задач */
+  #task-list {
+    display: grid;
+    gap: 20px;
+    padding: 20px;
+    grid-template-columns: repeat(4, 1fr); 
+  }
+  
+  /* Окно редактировния задачи */
+  .modal.hidden {
+    display: none;
+  }
+  
+  .modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    backdrop-filter: blur(2px);  
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    animation: modalFadeIn 0.2s ease-out;
+  }
+  
+  .modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  /* Темная тема */
+.dark-mode {
+    background-color: #1e1e1e;
+    color: #f4f4f4;
+}
+
+.dark-mode .modal-content {
+    background-color: #2c2c2c;
+}
+
+.dark-mode .sidebar {
+    background: #1b1b1f;
+}
+
+.dark-mode .main-content {
+    background: #2c2c2c;
+}
+
+.dark-mode .sort-buttons h1 {
+    color: #ffffff; 
+}
+
+.dark-mode input,
+.dark-mode textarea,
+.dark-mode select,
+.dark-mode button {
+    background-color: #444447;
+    color: #f4f4f4;
+    border-color: #555;
+}
+
+.dark-mode .task-item {
+    background: #3a3a3a;
+    border-color: #555;
+}
+
+.dark-mode #layout-buttons button {
+    color:#ffffff;
+    background: #2c2c2c;
+    border-color: #505050;
+}
+
+.dark-mode #layout-buttons button.active {
+    background: #3a3a3a;
+    color: white;
+}
+
+/* Количество отображения задач в строке */
+#layout-buttons {
+    display: flex;
+    gap: 10px;
+    margin: 10px 20px;
+  }
+  
+  #layout-buttons button {
+    padding: 5px 10px;
+    font-size: 18px;
+    color:#000000;
+    cursor: pointer;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  #layout-buttons button.active {
+    background: #3498db;
+    color: white;
+  }
+  
+
+  /* Анимации */
+  @keyframes modalFadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes taskFadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  .task-item.animate-in {
+    animation: taskFadeIn 0.3s ease-out;
+  }
+
+  @keyframes taskFadeOut {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+  }
+  
+  .task-item.animate-out {
+    animation: taskFadeOut 0.05s ease-out forwards;
+  }
+  
+  
+  
+    

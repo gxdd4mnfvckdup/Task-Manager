@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="wtf.css">
+</head>
+<div id="delete-modal" class="modal hidden">
+    <div class="modal-content">
+      <p>Удалить задачу?</p>
+      <div class="modal-buttons">
+        <button id="confirm-delete">Удалить</button>
+        <button id="cancel-delete">Отмена</button>
+      </div>
+    </div>
+</div>
+<div id="complete-modal" class="modal hidden">
+    <div class="modal-content">
+      <p>Завершить задачу?</p>
+      <div class="modal-buttons">
+        <button id="confirm-complete">Завершить</button>
+        <button id="cancel-complete">Отмена</button>
+      </div>
+    </div>
+</div>
+<div id="edit-modal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Редактировать задачу</h2>
+      <input type="text" id="edit-title">
+      <textarea id="edit-description"></textarea>
+      <select id="edit-priority">
+        <option value="Высокий">Высокий</option>
+        <option value="Средний">Средний</option>
+        <option value="Низкий">Низкий</option>
+      </select>
+      <input type="datetime-local" id="edit-date">
+      <div class="modal-buttons">
+        <button id="save-edit">Сохранить</button>
+        <button id="cancel-edit">Отмена</button>
+      </div>
+    </div>
+</div>
+<div id="alert-modal" class="modal hidden">
+    <div class="modal-content">
+      <p id="alert-message">Ошибка</p>
+      <div class="modal-buttons">
+        <button id="alert-ok">ОК</button>
+      </div>
+    </div>
+</div>  
+  
+<body>
+    <div class="app-container">
+        <!-- Боковая панель -->
+        <div class="sidebar">
+            <h1>Менеджер задач</h1>
+            <form id="task-form">
+                <input type="text" id="title" placeholder="Название" required>
+                <textarea id="description" placeholder="Описание"></textarea>
+                <select id="priority">
+                    <option value="Высокий">Высокий</option>
+                    <option value="Средний">Средний</option>
+                    <option value="Низкий">Низкий</option>
+                </select>
+                <input type="datetime-local" id="due-date" required>
+                <button type="submit">Добавить</button>
+            </form>
+        </div>
+
+        <!-- Основное содержимое -->
+        <div class="main-content">
+            <div class="filter-bar">
+                <select id="filter-options">
+                    <option value="all">Все</option>
+                    <option value="В процессе⏳">В процессе⏳</option>
+                    <option value="Завершено✔️">Завершено✔️</option>
+                </select>
+                <div id="layout-buttons">
+                    <button data-columns="1" title="1 в строке">1🔳</button>
+                    <button data-columns="2" title="2 в строке">2🔳</button>
+                    <button data-columns="4" title="4 в строке">4🔳</button>
+                    <button data-columns="6" title="6 в строке">6🔳</button>
+                </div>  
+            </div>
+            <!-- <div id="layout-buttons">
+                <button data-columns="1" title="1 в строке">1🔳</button>
+                <button data-columns="2" title="2 в строке">2🔳</button>
+                <button data-columns="4" title="4 в строке">4🔳</button>
+                <button data-columns="6" title="6 в строке">6🔳</button>
+            </div>               -->
+            <div class="sort-buttons">
+                <h1>Сортировка:</h1>
+                <button id="sort-name">По названию</button>
+                <button id="sort-priority">По приоритету</button>
+                <button id="sort-date">По дате</button>
+            </div>            
+            <div id="task-list"></div>
+        </div>
+    </div>
+    <script src="wtf.js"></script>
+</body>
+</html>
